@@ -26,7 +26,14 @@ public:
     //array of image-views from the swapchain
     std::vector<VkImageView> _swapchainImageViews;
 
-	bool _isInitialized{ false };
+    VkQueue _graphicsQueue; //queue we will submit to
+    uint32_t _graphicsQueueFamily; //family of that queue
+
+    VkCommandPool _commandPool; //the command pool for our commands
+    VkCommandBuffer _mainCommandBuffer; //the buffer we will record into
+
+
+    bool _isInitialized{ false };
 	int _frameNumber {0};
 
 	VkExtent2D _windowExtent{ 1700 , 900 };
@@ -50,4 +57,7 @@ private:
     void init_vulkan();
 
     void init_swapchain();
+
+    void init_commands();
+
 };
